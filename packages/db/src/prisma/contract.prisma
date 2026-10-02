@@ -1,21 +1,46 @@
 // use prisma-8
-
 model User {
-  id        Int      @id @default(autoincrement())
-  email     String   @unique
+  id        Int               @id @default(autoincrement())
+  email     String            @unique
   username  String?
-  name      String?
-  posts     Post[]
+  password  String?
+  zaps      Zap[]
   createdAt TimestamptzString @default(now())
-  updatedAt temporal.updatedAtString()
 }
 
-model Post {
-  id        Int      @id @default(autoincrement())
-  title     String
-  content   String?
-  author    User     @relation(fields: [authorId], references: [id])
-  authorId  Int
-  createdAt TimestamptzString @default(now())
-  updatedAt temporal.updatedAtString()
+model Zap {
+  id        String    @id @default(uuid())
+  userId    String
+  triggerId String
+  trigger   Trigger[]
+  Action    Action[]
+  User      User      @relation(fields: [userId], references: [id])
+}
+
+model Trigger {
+  id        String            @id @default(uuid())
+  zapId     String
+  zap       Zap               @relation(fields: [zapId], references: [id])
+  triggerId String
+  type      AvailableTriggers @relation(fields: [triggerId], references: [id])
+}
+
+model Action {
+  id       String          @id @default(uuid())
+  zapId    String
+  zap      Zap             @relation(fields: [zapId], references: [id])
+  actionId String
+  type     AvailableAction @relation(fields: [actionId], references: [id])
+}
+
+model AvailableTriggers {
+  id       String    @id @default(uuid())
+  name     String
+  triggers Trigger[]
+}
+
+model AvailableAction {
+  id      String   @id @default(uuid())
+  name    String
+  Actions Action[]
 }
