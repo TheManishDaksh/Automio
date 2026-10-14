@@ -1,9 +1,8 @@
-console.log("manish kumar");
+import express from "express";
+import 'dotenv/config';
 
-function name (naam:string, age:number){
-    const a = naam;
-    const b = age;
+const app = express();
 
-    console.log(`${a} is ${b} years old`);
-}
-name("atul", 35);
+// build the generate access token
+// verify-accesstoken
+// refresh-token
