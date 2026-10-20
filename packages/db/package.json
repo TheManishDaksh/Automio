@@ -1,5 +1,5 @@
 {
-  "name": "db",
+  "name": "@repo/db",
   "private": true,
   "packageManager": "npm@11.6.0",
   "type": "module",
@@ -29,12 +29,13 @@
     "@prisma/orm-postgres": "8.0.0-rc.12",
     "alchemy": "2.0.0-beta.78",
     "dotenv": "^16.0.3",
+    "studio": "^0.13.5",
     "temporal-polyfill": "^1.0.4"
   },
   "devDependencies": {
     "@prisma/dev": "0.25.2",
     "@types/node": "^25.6.2",
-    "prisma": "8.0.0-rc.18",
+    "prisma": "^8.0.0-rc.18",
     "tsdown": "^0.22.14",
     "tsx": "^4.21.0",
     "typescript": "^5.9.3"
@@ -47,5 +48,8 @@
     "@effect/sql-d1": "4.0.0-rc.115",
     "@effect/sql-sqlite-do": "4.0.0-rc.115",
     "@effect/vitest": "4.0.0-rc.115"
+  },
+  "exports": {
+    ".": "./src/prisma/db.ts"
   }
 }
