@@ -1,4 +1,5 @@
 just set up the project with prisma
-but prisma hasn't been tested, working properly or not and pg is not connected as well till now
-next task is check prisma and postgres and make schema ready at least for user auth
+
+done 20.10.2026  - Prisma setup successfully and is in sync with neon db
+
 make user auth ready with cookies and forget password
