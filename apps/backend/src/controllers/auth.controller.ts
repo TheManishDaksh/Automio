@@ -4,6 +4,36 @@ import jwt from "jsonwebtoken";
 import 'dotenv/config';
 import bcrypt from 'bcrypt';
 
+interface User {
+    username : String,
+    id : String,
+    password : String,
+    email : String
+}
+
+const {ACCESSTOKEN_SECRET, REFRESHTOKEN_SECRET} = process.env;
+
+const generateAccessToken = (user:User)=>{
+    return jwt.sign({
+        id : user.id,
+        email : user.email,
+        password : user.password
+    },ACCESSTOKEN_SECRET || "madsd47934", // fix this later
+{expiresIn : "24h"})
+}
+
+const generateRefreshToken = (user: User)=>{
+    return jwt.sign({
+        id : user.id
+    }, REFRESHTOKEN_SECRET || "manihdf84356",{ // fix this later
+        expiresIn : "24h"
+    }) 
+}
+
+const generateRefreshAndAccessToken = async(userId : string)=>{
+    const user = await db.orm.public.Action.first({id : userId})
+}
+
 const signupUser = async (req: Request, res: Response) => {
     const { username, email, password } = req.body;
     if (
